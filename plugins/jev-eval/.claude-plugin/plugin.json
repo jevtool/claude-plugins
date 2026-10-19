@@ -1,0 +1,16 @@
+{
+  "name": "jev-eval",
+  "version": "0.1.0",
+  "description": "Teaches Claude to turn your data into a labeled Jev test suite and run jevtool eval: accuracy, misses, a safe confidence cutoff, and what changes between Jev versions.",
+  "author": {
+    "name": "jevtool",
+    "url": "https://jevtool.dev"
+  },
+  "homepage": "https://jevtool.dev",
+  "repository": "https://github.com/jevtool/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "jev",
+    "typesafe"
+  ]
+}

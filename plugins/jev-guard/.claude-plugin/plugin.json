@@ -1,0 +1,16 @@
+{
+  "name": "jev-guard",
+  "version": "0.1.0",
+  "description": "Before Claude runs a shell command, writes a file or fetches a URL, Jev scores the risk. Destructive, exfiltrating or out-of-scope actions are blocked or sent to you for approval. Never auto-approves anything.",
+  "author": {
+    "name": "jevtool",
+    "url": "https://jevtool.dev"
+  },
+  "homepage": "https://jevtool.dev",
+  "repository": "https://github.com/jevtool/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "jev",
+    "typesafe"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "description": "jev-guard: score risky tool calls with Jev before they run",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|MultiEdit|WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard.mjs\"",
+            "timeout": 6
+          }
+        ]
+      }
+    ]
+  }
+}

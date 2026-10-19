@@ -1,0 +1,16 @@
+{
+  "name": "jev-verify",
+  "version": "0.1.0",
+  "description": "Teaches Claude to check its own delivery against an acceptance checklist, the Git diff and freshly executed tests before saying it is done.",
+  "author": {
+    "name": "jevtool",
+    "url": "https://jevtool.dev"
+  },
+  "homepage": "https://jevtool.dev",
+  "repository": "https://github.com/jevtool/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "jev",
+    "typesafe"
+  ]
+}

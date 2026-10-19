@@ -1,0 +1,29 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "jevtool",
+  "description": "Claude Code plugins that use Jev, TypeSafe's System One model, for fast, calibrated judgments: guard risky tool calls, evaluate Jev judgments on your own data, and check agent deliveries.",
+  "owner": { "name": "jevtool", "url": "https://jevtool.dev" },
+  "plugins": [
+    {
+      "name": "jev-guard",
+      "description": "Before Claude runs a shell command, writes a file or fetches a URL, Jev scores the risk. Destructive, exfiltrating or out-of-scope actions are blocked or sent to you for approval. Never auto-approves anything.",
+      "source": "./plugins/jev-guard",
+      "category": "security",
+      "homepage": "https://jevtool.dev/#plugins"
+    },
+    {
+      "name": "jev-eval",
+      "description": "Teaches Claude to turn your data into a labeled Jev test suite and run jevtool eval: accuracy, misses, a safe confidence cutoff, and what changes between Jev versions.",
+      "source": "./plugins/jev-eval",
+      "category": "development",
+      "homepage": "https://jevtool.dev/#plugins"
+    },
+    {
+      "name": "jev-verify",
+      "description": "Teaches Claude to check its own delivery against an acceptance checklist, the Git diff and freshly executed tests before saying it is done.",
+      "source": "./plugins/jev-verify",
+      "category": "development",
+      "homepage": "https://jevtool.dev/#plugins"
+    }
+  ]
+}
