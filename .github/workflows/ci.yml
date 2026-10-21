@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+      - name: Validate marketplace and plugin manifests
+        run: |
+          node -e '
+            const fs = require("fs");
+            const m = JSON.parse(fs.readFileSync(".claude-plugin/marketplace.json", "utf8"));
+            for (const p of m.plugins) {
+              const manifest = JSON.parse(fs.readFileSync(`${p.source}/.claude-plugin/plugin.json`, "utf8"));
+              if (manifest.name !== p.name) throw new Error(`name mismatch for ${p.name}`);
+              const hooks = `${p.source}/hooks/hooks.json`;
+              if (fs.existsSync(hooks)) JSON.parse(fs.readFileSync(hooks, "utf8"));
+              console.log("ok", p.name, manifest.version);
+            }'
+      - name: Guard hook parses and fails open without a key
+        run: |
+          node --check plugins/jev-guard/hooks/guard.mjs
+          out=$(echo '{"tool_name":"Bash","tool_input":{"command":"node scripts/build.js"},"cwd":"/tmp"}' | HOME=/tmp/nohome TYPESAFE_API_KEY= JEV_API_KEY= node plugins/jev-guard/hooks/guard.mjs)
+          test -z "$out"
+          out=$(echo '{"tool_name":"Bash","tool_input":{"command":"rm -rf ~"},"cwd":"/tmp"}' | HOME=/tmp/nohome node plugins/jev-guard/hooks/guard.mjs)
+          echo "$out" | grep -q '"permissionDecision":"deny"'
